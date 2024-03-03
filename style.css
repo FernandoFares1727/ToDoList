@@ -202,6 +202,7 @@ body {
 
 .taskDescription {
     flex-grow: 1;
+    max-width: 653px;
 }
 
 .taskDescription:not(.taskCheckboxChecked) {
