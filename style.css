@@ -1,0 +1,225 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+    --bodyColor: #1A1A1A;
+    --headerColor: #0D0D0D;
+    --headerTextColor: #4B0082;
+    --inputColor: #262626;
+    --inputTextColor: white;
+    --addTaskButtonColor: #1E6F9F;
+    --addTaskButtonColorHover: #164D72;
+    --createTasks: #4EA8DE;
+    --allTasks: #8284FA;
+    --counterInfoTasks: #333333;
+    --counterInfoTasksTextColor: white;
+    --checkedTasksTextColor: #808080;
+    --taskItemColor: #262626;
+    --taskItemCheckboxBorderColor: #4EA8DE;
+    --taskItemCheckboxColor: #262626;
+    --taskItemCheckboxChecked: #5E60CE;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bodyColor);
+}
+
+#toDoHeader {
+    background-color: var(--headerColor);
+    height: 200px;
+    display: flex; /* Usando flexbox */
+    align-items: center; /* Centralizando verticalmente */
+    justify-content: center; /* Centralizando horizontalmente */
+    gap: 10px;
+}
+
+#toDoHeader h1 {
+    color: var(--headerTextColor);
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 0;
+}
+
+#addTaskContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#addTask {
+    display: flex;
+    gap: 8px;
+    top: 173px;
+    position: absolute;
+    margin: 0 auto;
+}
+
+#addTask input {
+    border: 1px;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: var(--inputColor);    
+    /*height: 34px;*/
+    width: 500px;
+    color: var(--inputTextColor);
+}
+
+#addTask button {
+    /*padding: 16px;*/
+    border-radius: 8px;
+    /*height: 52px;*/
+    width: 90px;
+    background-color: var(--addTaskButtonColor);
+    border: none;
+    display: flex;
+    color: var(--inputTextColor);
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#addTask button:hover {
+    background-color: var(--addTaskButtonColorHover);
+}
+
+#addTask p {
+    font-family: "Inter", sans-serif;
+    font-weight: 700px;
+    font-size: 14px;
+    line-height: 19.6px;
+}
+
+/* elementos do taskContainer */
+
+#tasksContainer {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+#tasks {
+    display: flex;
+    flex-direction: column; /* Adicionado para organizar as divs em colunas */
+    justify-content: center;
+    width: 736px;
+}
+
+#infoTasks {
+    margin: 0px;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+#createdTasks {
+    display: flex;
+    gap: 10px;
+}
+
+#createdTasks p {
+    font-family: "Inter", sans-serif;
+    font-weight: 700px;
+    font-size: 14px;
+    line-height: 19.64px;
+}
+
+#createdTasksLabel {
+    color: var(--createTasks);
+}
+
+#allTasks {
+    display: flex;
+    gap: 10px;
+}
+
+#allTasks p {
+    font-family: "Inter", sans-serif;
+    font-weight: 700px;
+    font-size: 14px;
+    line-height: 19.64px;
+}
+
+#allTasksLabel {
+    color: var(--allTasks);
+}
+
+.counter {
+    display: inline-flex; /* Allows the element to grow and shrink */
+    align-items: center; /* Centers the text vertically */
+    justify-content: center; /* Centers the text horizontally */
+    width: auto; /* Allows the element to adjust its width based on content */
+    height: 19px;
+    border-radius: 999px;
+    background-color: var(--counterInfoTasks);
+    color: var(--counterInfoTasksTextColor);
+    padding: 0 5px; /* Adds some spacing around the text */
+  }
+
+/* cards */
+
+.taskItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: var(--taskItemColor);
+    padding: 10px;
+    border-radius: 5px;
+    gap: 5px;
+}
+
+.taskCheckbox {
+    margin-right: 10px;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--taskItemCheckboxColor);
+    border: 1px solid var(--taskItemCheckboxBorderColor);
+    position: relative;
+}
+
+.taskCheckbox:checked {
+    background-color: var(--taskItemCheckboxChecked);
+}
+
+.taskCheckbox:checked::before {
+    content: "";
+    width: 7.31px;
+    height: 4.69px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 2px;
+    left: 3px;
+}
+
+.taskDescription {
+    flex-grow: 1;
+}
+
+.taskDescription:not(.taskCheckboxChecked) {
+    color: var(--inputTextColor);
+}
+
+.taskCheckboxChecked {
+    color: var(--checkedTasksTextColor);
+    text-decoration-line:line-through;
+}
+
+
+.deleteTask {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: none;
+}
