@@ -18,6 +18,7 @@
     --taskItemCheckboxBorderColor: #4EA8DE;
     --taskItemCheckboxColor: #262626;
     --taskItemCheckboxChecked: #5E60CE;
+    --taskItemDeleteHover: #ccc;
 }
 
 body {
@@ -222,4 +223,8 @@ body {
     align-items: center;
     background: transparent;
     border: none;
+}
+
+.deleteTask:hover {
+    border: 1px solid  var(--taskItemDeleteHover); /* borda quando o mouse estiver sobre o botão */
 }
