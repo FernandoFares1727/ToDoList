@@ -1,5 +1,6 @@
 const taskCardFolder = './tasksCard/';
 const taskCardPage = 'index.html';
+const noTasksCardPage = 'noTasks.html';
 
 loadSavedTaskItens();
 
@@ -11,6 +12,8 @@ const taskItemChanges = {
 function loadSavedTaskItens()
 {
     var tasksBody = document.querySelector('#tasksBody');
+    configAddRemoveTaskItens(tasksBody);
+
     var totalTasks = localStorage.length;
     var completedTasks = 0;
 
@@ -36,6 +39,81 @@ function loadSavedTaskItens()
     var completedTasksText = completedTasks + " de " + totalTasks;
 
     allTasksCounter.textContent = completedTasksText;
+
+    if (totalTasks == 0)
+      addNoTasksBody();
+}
+
+function configAddRemoveTaskItens(tasksBody)
+{
+    // Cria um novo MutationObserver
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          // Verifica se algum elemento taskItem foi adicionado ou removido
+          if (mutation.addedNodes.length || mutation.removedNodes.length) {
+            mutation.addedNodes.forEach(function(node) {
+              // Chama a função handleTaskItemAdd se um novo taskItem foi adicionado
+              if (node.matches && node.matches('.taskItem')) {
+                handleTaskItemAdd();
+              }
+            });
+            mutation.removedNodes.forEach(function(node) {
+              // Chama a função handleTaskItemRemove se um taskItem foi removido
+              if (node.matches && node.matches('.taskItem')) {
+                handleTaskItemRemove();
+              }
+            });
+          }
+        });
+    });
+    
+    // Configura o MutationObserver para observar as mutações no tasksBody
+    observer.observe(tasksBody, {
+        childList: true,
+        subtree: true
+    });
+}
+
+// Função chamada quando um novo taskItem é adicionado
+function handleTaskItemAdd() {
+    var tasksBody = document.querySelector('#tasksBody');
+    var hasNoTasksPage = tasksBody.querySelector('.noTasksBody');
+    
+    if(hasNoTasksPage)
+        removeNoTasksBody();
+}
+  
+// Função chamada quando um taskItem é removido
+function handleTaskItemRemove() {
+    var tasksBody = document.querySelector('#tasksBody');
+    var hasTaskItems = tasksBody.querySelectorAll('.taskItem').length > 0;
+
+    if (!hasTaskItems)
+        addNoTasksBody();
+}
+
+function addNoTasksBody()
+{
+    var tasksBody = document.querySelector('#tasksBody');
+
+    fetch(taskCardFolder + noTasksCardPage)
+    .then(response => response.text())
+    .then(html => {
+
+        var noTasksBody = document.createElement('div');
+        noTasksBody.classList.add('noTasksBody');
+        noTasksBody.innerHTML = html;
+
+        tasksBody.appendChild(noTasksBody);
+    })
+}
+
+function removeNoTasksBody()
+{
+    var tasksBody = document.querySelector('#tasksBody');
+    var noTasksBody = tasksBody.querySelector('.noTasksBody');
+
+    tasksBody.removeChild(noTasksBody);
 }
 
 function addTask(element)

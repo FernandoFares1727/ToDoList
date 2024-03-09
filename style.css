@@ -19,6 +19,7 @@
     --taskItemCheckboxColor: #262626;
     --taskItemCheckboxChecked: #5E60CE;
     --taskItemDeleteHover: #ccc;
+    --noTasksMessage: #808080;
 }
 
 body {
@@ -228,4 +229,31 @@ body {
 
 .deleteTask:hover {
     border: 1px solid  var(--taskItemDeleteHover); /* borda quando o mouse estiver sobre o botão */
+}
+
+/* No tasks Body */
+
+.noTasksBody {
+    margin-top: 15px;
+    text-align: center;
+    border-top: 1px solid;
+    border-radius: 8px;
+    border-color: var(--noTasksMessage);
+}
+
+.noTasksBody img {
+    margin-top: 40px;
+}
+
+#noTasksInfo {
+    margin-top: 10px;
+    color: var(--noTasksMessage);
+}
+
+#noTasksInfo p {
+    margin: 0;
+}
+
+#noTasksInfo p strong {
+    font-weight: bolder;
 }
