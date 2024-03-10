@@ -68,10 +68,16 @@ function configAddRemoveTaskItens(tasksBody)
     });
     
     // Configura o MutationObserver para observar as mutações no tasksBody
+    //primeiro parâmetro é o elemento que será observado pelo mutation observer
+    //childList faz com que as mudanças na filha também sejam capturadas
     observer.observe(tasksBody, {
         childList: true,
         subtree: true
     });
+
+    // Caso desejado deveríamos desconectar o observer, pois consome processamento da página
+    //usar observer com sabedoria
+    //observer.disconnect();
 }
 
 // Função chamada quando um novo taskItem é adicionado

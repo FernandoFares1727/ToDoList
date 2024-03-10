@@ -31,6 +31,7 @@ body {
     background-color: var(--headerColor);
     height: 200px;
     display: flex; /* Usando flexbox */
+    flex: 1;
     align-items: center; /* Centralizando verticalmente */
     justify-content: center; /* Centralizando horizontalmente */
     gap: 10px;
@@ -66,7 +67,7 @@ body {
     padding: 16px;
     background-color: var(--inputColor);    
     /*height: 34px;*/
-    width: 500px;
+    max-width: 500px;
     color: var(--inputTextColor);
 }
 
@@ -171,6 +172,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     gap: 5px;
+    width: 100%; /* or any other defined width */
 }
 
 .taskCheckbox {
@@ -203,7 +205,10 @@ body {
 
 .taskDescription {
     flex-grow: 1;
-    max-width: 653px;
+    min-width: 0;
+    max-width: 100%;
+    word-wrap: break-word; /* adicionar esta linha */
+    overflow-y: auto;
 }
 
 .taskDescription:not(.taskCheckboxChecked) {
