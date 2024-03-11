@@ -152,9 +152,17 @@ function addTaskItem(tasksBody, inputValue, dataid, isChecked = false) {
         .then(html => {
             var taskItem = document.createElement('li');
             taskItem.innerHTML = html;
+
+            var tasksBodyWidth = tasksBody.offsetWidth;
+            var taskTextLimit = (tasksBodyWidth - 83).toString() + 'px';
         
             taskItem.classList.add('taskItem');
             var taskText = taskItem.querySelector('.taskDescription');
+            taskText.style.maxWidth = taskTextLimit;
+
+            window.addEventListener('resize', function() {
+                location.reload();
+            });
 
             taskText.addEventListener('input', function() {
                 // callBack added
@@ -188,8 +196,6 @@ function taskCheckboxChanged(event)
     var taskItem = taskCheckbox.parentNode;
     var taskDescription = taskItem.querySelector('.taskDescription');
 
-    console.log(taskItem);
-
     var isChecked = taskCheckbox.checked;
 
     if (isChecked)
@@ -213,7 +219,6 @@ function taskCheckboxChanged(event)
 function updateTaskInfo(tasksBody, tasksInfo, realoded = true)
 {
     var tasksItens = tasksBody.querySelectorAll('.taskItem');
-    console.log(tasksItens);
     var taskItensCount = realoded ? tasksItens.length + 1 : tasksItens.length;
 
     var createdTasksCounter = tasksInfo.querySelector('#createdTasks').querySelector('.counter');

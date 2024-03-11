@@ -25,6 +25,9 @@
 body {
     margin: 0;
     background-color: var(--bodyColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #toDoHeader {
@@ -54,19 +57,22 @@ body {
 
 #addTask {
     display: flex;
+    justify-content: center;
     gap: 8px;
     top: 173px;
     position: absolute;
     margin: 0 auto;
+    width: 100%;
 }
 
 #addTask input {
     border: 1px;
     border-radius: 8px;
     padding: 16px;
-    background-color: var(--inputColor);    
-    /*height: 34px;*/
-    width: 500px;
+    background-color: var(--inputColor);   
+    min-width: 0; /* Add this line */
+    flex-grow: 1; /* Add this line */ 
+    max-width: 700px;
     color: var(--inputTextColor);
 }
 
@@ -163,6 +169,12 @@ body {
 
 /* cards */
 
+#tasksBody {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .taskItem {
     display: flex;
     align-items: center;
@@ -171,6 +183,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     gap: 5px;
+    max-width: 100%;
 }
 
 .taskCheckbox {
@@ -201,9 +214,10 @@ body {
     left: 3px;
 }
 
-.taskDescription {
+.taskDescription { 
+    margin: 0px;
     flex-grow: 1;
-    max-width: 653px;
+    overflow-wrap: break-word;
 }
 
 .taskDescription:not(.taskCheckboxChecked) {
