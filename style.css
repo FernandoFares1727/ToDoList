@@ -62,6 +62,7 @@ body {
     top: 173px;
     position: absolute;
     margin: 0 auto;
+    align-items: center;
     width: 100%;
 }
 
@@ -172,7 +173,7 @@ body {
 #tasksBody {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 2px;
 }
 
 .taskItem {
@@ -218,6 +219,10 @@ body {
     margin: 0px;
     flex-grow: 1;
     overflow-wrap: break-word;
+    font-family: "Inter", sans-serif;
+    font-weight: 700px;
+    font-size: 14px;
+    line-height: 19.6px;
 }
 
 .taskDescription:not(.taskCheckboxChecked) {
@@ -270,4 +275,33 @@ body {
 
 #noTasksInfo p strong {
     font-weight: bolder;
+}
+
+/* bloco para tornar responsivo a dispositivos celulares */
+
+@media screen and (max-width: 700px) {
+
+    #addTask input {
+        margin-left: 10px;
+    }
+
+    #addTask button {
+        margin-right: 10px;
+    }
+
+    #createdTasks {
+        gap: 5px;
+    }
+
+    #createdTasks p {
+        font-size: 12px;
+    }
+
+    #allTasks {
+        gap: 5px;
+    }
+
+    #allTasks p {
+        font-size: 12px;
+    }
 }
