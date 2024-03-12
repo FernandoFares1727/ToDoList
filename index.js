@@ -152,16 +152,14 @@ function addTaskItem(tasksBody, inputValue, dataid, isChecked = false) {
         .then(html => {
             var taskItem = document.createElement('li');
             taskItem.innerHTML = html;
-
-            var tasksBodyWidth = tasksBody.offsetWidth;
-            var taskTextLimit = (tasksBodyWidth - 83).toString() + 'px';
         
             taskItem.classList.add('taskItem');
             var taskText = taskItem.querySelector('.taskDescription');
-            taskText.style.maxWidth = taskTextLimit;
 
+            adjustTaskDescriptionMaxWidth(tasksBody, taskText);
+            
             window.addEventListener('resize', function() {
-                location.reload();
+                adjustTaskDescriptionMaxWidth(tasksBody, taskText);
             });
 
             taskText.addEventListener('input', function() {
@@ -188,6 +186,13 @@ function addTaskItem(tasksBody, inputValue, dataid, isChecked = false) {
             reject(error);
         });
     });
+}
+
+function adjustTaskDescriptionMaxWidth(tasksBody, taskText)
+{
+    var tasksBodyWidth = tasksBody.offsetWidth;
+    var taskTextLimit = (tasksBodyWidth - 83).toString() + 'px';
+    taskText.style.maxWidth = taskTextLimit;
 }
 
 function taskCheckboxChanged(event)
