@@ -20,6 +20,8 @@
     --taskItemCheckboxChecked: #5E60CE;
     --taskItemDeleteHover: #ccc;
     --noTasksMessage: #808080;
+    --BodyMaxWidth: 830px;
+    --BodyMinMarginWhenMinorScreen: 10px;
 }
 
 body {
@@ -64,6 +66,7 @@ body {
     margin: 0 auto;
     align-items: center;
     width: 100%;
+    max-width: var(--BodyMaxWidth);
 }
 
 #addTask input {
@@ -107,14 +110,16 @@ body {
 #tasksContainer {
     display: flex;
     justify-content: center;
-    margin: 50px;
+    /*margin: 50px;*/
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 #tasks {
     display: flex;
     flex-direction: column; /* Adicionado para organizar as divs em colunas */
     justify-content: center;
-    width: 736px;
+    width: var(--BodyMaxWidth);
 }
 
 #infoTasks {
@@ -282,11 +287,11 @@ body {
 @media screen and (max-width: 700px) {
 
     #addTask input {
-        margin-left: 10px;
+        margin-left: var(--BodyMinMarginWhenMinorScreen);
     }
 
     #addTask button {
-        margin-right: 10px;
+        margin-right: var(--BodyMinMarginWhenMinorScreen);
     }
 
     #createdTasks {
@@ -303,5 +308,10 @@ body {
 
     #allTasks p {
         font-size: 12px;
+    }
+
+    #tasks {
+        margin-left: var(--BodyMinMarginWhenMinorScreen);
+        margin-right: var(--BodyMinMarginWhenMinorScreen);
     }
 }
