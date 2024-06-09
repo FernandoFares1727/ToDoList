@@ -14,21 +14,33 @@ function loadSavedTaskItens()
     var tasksBody = document.querySelector('#tasksBody');
     configAddRemoveTaskItens(tasksBody);
 
-    var totalTasks = localStorage.length;
+    var totalTasks = 0;
     var completedTasks = 0;
 
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         const value = localStorage.getItem(key);
 
-        const parsedValue = JSON.parse(value);
+        let parsedValue;
+        try {
+            parsedValue = JSON.parse(value);
+        } catch (e) {
+            // Se o valor não for um JSON válido, pule para a próxima iteração
+            continue;
+        }
+
         const taskDescription = parsedValue.taskDescription;
         const dataid = parsedValue.dataid;
         const isCompleted = parsedValue.isCompleted;
 
-        if (isCompleted)
+        // Verificação para pular a iteração se qualquer valor for undefined
+        if (taskDescription === undefined || dataid === undefined || isCompleted === undefined) 
+            continue;
+
+        else if (isCompleted)
             ++completedTasks;
 
+        ++totalTasks;
         addTaskItem(tasksBody, taskDescription, dataid, isCompleted);
       }
 
